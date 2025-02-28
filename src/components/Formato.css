@@ -1,0 +1,12 @@
+header {
+    background-color: #221C1C;
+    height: 120px;
+}
+
+.fondo {
+    width: 100%;
+    height: 100vh;
+    background-color: #473C3C;
+    color: white;
+}
+  

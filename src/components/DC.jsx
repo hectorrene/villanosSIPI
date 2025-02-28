@@ -1,15 +1,16 @@
 import React from "react";
-import Footer from "./Footer";
+import "./Formato.css";
 
 const DC = () => {
   return (
-    <>
-    <div>
+    <div className="fondo">
+      <header>
+
+      </header>
+      
       <h1>DC</h1>
       <p>Bienvenido a la sección de DC</p>
     </div>
-    <Footer />
-    </>
   );
 };
 
