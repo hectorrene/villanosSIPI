@@ -1,0 +1,23 @@
+{
+    "villanos": [
+      {
+        "Nombre": "Green Goblin",
+        "Nemesis": "Spider-Man",
+        "Fecha de Creación": "1964",
+        "Poderes": "Fuerza sobrehumana, inteligencia, equipo avanzado",
+        "Apariencia": "Traje verde y morado, planeador",
+        "Identidad Secreta": "Norman Osborn",
+        "Origen": "Humano modificado"
+      },
+      {
+        "Nombre": "Venom",
+        "Nemesis": "Spider-Man",
+        "Fecha de Creación": "1984",
+        "Poderes": "Fuerza sobrehumana, regeneración, simbionte alienígena",
+        "Apariencia": "Cuerpo negro con detalles blancos, aspecto monstruoso",
+        "Identidad Secreta": "Eddie Brock",
+        "Origen": "Simbionte alienígena"
+      }
+    ]
+  }
+  

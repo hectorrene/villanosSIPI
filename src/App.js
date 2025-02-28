@@ -1,6 +1,7 @@
 import React from "react";
 import fondo from "./assets/fondo.mp4";
 
+
 const Main = () => {
   return (
     <div className="main">
