@@ -1,17 +1,19 @@
-import React from 'react'
+//import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Link } from "react-router-dom";
+import "./header.css"
+import pestana from "../assets/pestana.png"
 
-const header = () => {
+const Header = () => {
   return (
-    <div>
-        <nav>
-            <ul>
-                <li><a class="nav-link active" href='index.html'><p> Villanos </p></a></li>
-                <li><a href='historia.html'><p> Marvel </p></a></li>
-                <li><a href='conocenos.html'><p> DC </p></a></li>
-            </ul>
-        </nav>
-    </div>
-  )
+    <nav>
+        <Link to = "/"><img src={pestana} alt="pestana" width={100} height={100}/></Link>
+        <ul>
+            <li><Link className="nav-link active" to="/villanos/api"><p> villanos </p></Link></li>
+            <li><Link to = '/villanos/api/marvel'><p> Marvel </p></Link></li>
+            <li><Link to = '/villanos/api/dc'><p> DC </p></Link></li>
+        </ul>
+    </nav>
+  );
 }
 
-export default header
+export default Header;
