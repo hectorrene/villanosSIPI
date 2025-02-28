@@ -1,17 +1,28 @@
 import React from "react";
-import fondo from "./assets/fondo.mp4";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Header from "./components/header";
+import Main from "./components/Main";  // Import Main component
+import Villanos from "./components/Villanos";
+import Marvel from "./components/Marvel";
+import DC from "./components/DC";
+import "./App.css";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Footer from "./components/Footer";
 
 
-const Main = () => {
+function App() {
   return (
-    <div className="main">
-      <video src={fondo} autoPlay loop muted />
-      <div className="content">
-        <h1> WikiVillanos </h1>
-        <p> conoce a nuestros villlanos</p>
-      </div>
-    </div>
+    <Router>
+      <Header />  
+      <Routes>
+        <Route path="/" element={<Main />} />
+        <Route path="/villanos/api" element={<Villanos />} />
+        <Route path="/villanos/api/marvel" element={<Marvel />} />
+        <Route path="/villanos/api/dc" element={<DC />} />
+      </Routes>
+      <Footer />
+    </Router>
   );
 }
 
-export default Main; 
+export default App;
