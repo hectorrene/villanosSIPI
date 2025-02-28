@@ -1,5 +1,6 @@
 import React from "react";
-import "./Formato.css";
+import "./Villanos.css";
+import Footer from "./Footer";
 
 const Villanos = () => {
   return (
@@ -7,9 +8,13 @@ const Villanos = () => {
       <header>
 
       </header>
-      <h1>Villanos</h1>
-      <p>Bienvenido a la sección de Villanos</p>
+      <div id="hero">
+        <h1>Villanos</h1>
+        <p>Bienvenido a la sección de Villanos</p>
+      </div>
+      <Footer />
     </div>
+    
   );
 };
 
