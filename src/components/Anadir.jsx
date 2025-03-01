@@ -58,7 +58,7 @@ const Anadir = () => {
         <div className="mb-3">
             <label className="form-label"> Nombre del villano </label>
                 <input
-                placeholder="Thanos"
+                placeholder="Nombre"
                 type="text"
                 className="form-control"
                 value={nombre}
@@ -71,7 +71,7 @@ const Anadir = () => {
         <div className="mb-3">
             <label className="form-label"> Nemesis del villano </label>
                 <input
-                placeholder="Los vengadores"
+                placeholder="Nemesis"
                 type="text"
                 className="form-control"
                 value={nemesis}
@@ -99,7 +99,7 @@ const Anadir = () => {
         <div className="mb-3">
             <label className="form-label"> Poderes </label>
             <textarea
-                placeholder="Fuerza, inteligencia, inmortalidad"
+                placeholder="Poderes"
                 className="form-control"
                 value={poderes}
                 onChange={(e) => setPoderes(e.target.value)}
@@ -111,7 +111,7 @@ const Anadir = () => {
         <div className="mb-3">
             <label className="form-label"> apariencia del villano </label>
                 <input
-                placeholder="piel morada, armadura dorada"
+                placeholder="Apariencia"
                 type="text"
                 className="form-control"
                 value={apariencia}
@@ -124,7 +124,7 @@ const Anadir = () => {
         <div className="mb-3">
             <label className="form-label"> Identidad secreta </label>
                 <input
-                placeholder="no tiene"
+                placeholder="Identidad secreta"
                 type="text"
                 className="form-control"
                 value={identidad_secreta}
@@ -137,7 +137,7 @@ const Anadir = () => {
         <div className="mb-3">
             <label className="form-label"> Origen </label>
             <textarea
-                placeholder="Titan"
+                placeholder="Origen"
                 className="form-control"
                 value={origen}
                 onChange={(e) => setOrigen(e.target.value)}
