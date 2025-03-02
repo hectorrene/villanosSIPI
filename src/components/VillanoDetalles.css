@@ -1,0 +1,30 @@
+.container {
+    width: 100%;
+    
+}
+
+.imagenes {
+    width: 100%;
+    margin-bottom: 2rem;
+}
+
+.textoInsano, .tituloInsano {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.textoInsano {
+    font-size: 1.5rem;
+}
+
+.tituloInsano {
+    font-size: 2.5rem;
+    font-style: italic;
+    font-weight: 800;
+}
+
+
+
+
+
+
+

@@ -1,5 +1,7 @@
 import React from "react";
 import "./Formato.css";
+import VillanoPeak from "./VillanoPeak";
+
 
 const DC = () => {
   return (
@@ -10,7 +12,9 @@ const DC = () => {
     <div className="contenido">
       <h1>DC</h1>
       <p>Bienvenido a la sección de DC</p>
+      
     </div>
+    <VillanoPeak opcion="dc"/>
     
     </div>
   );

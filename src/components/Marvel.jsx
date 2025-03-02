@@ -1,5 +1,6 @@
 import React from "react";
 import "./Formato.css";
+import VillanoPeak from "./VillanoPeak";
 
 const Marvel = () => {
   return (
@@ -11,7 +12,7 @@ const Marvel = () => {
         <h1>Marvel</h1>
         <p>Bienvenido a la sección de Marvel</p>
       </div>
-
+      <VillanoPeak opcion="marvel"/>
     </div>
   );
 };
