@@ -1,194 +1,169 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "./Formato.css";
-import { useParams, useNavigate } from 'react-router-dom'; 
 
-const Modificar = () => {
-    const { opcion, nombre } = useParams();
-    const url = 'http://localhost:3001';
-    const navigate = useNavigate();
+const Anadir = () => {
+  const [nombre, setName] = useState("");
+  const [nemesis, setNemesis] = useState("");
+  const [fecha_creacion, setFecha] = useState("");
+  const [poderes, setPoderes] = useState("");
+  const [apariencia, setApariencia] = useState("");
+  const [identidad_secreta, setIdentidad] = useState("");
+  const [origen, setOrigen] = useState("");
+  const [universe, setUniverse] = useState("marvel"); 
 
-    // Estado con los nombres correctos
-    const [formData, setFormData] = useState({
-        Nombre: "",
-        Nemesis: "",
-        fecha_creacion: "",
-        Poderes: "",
-        Apariencia: "",
-        identidad_secreta: "",
-        Origen: "",
-    });
+  const handleSubmit = async (e) => {
+    e.preventDefault(); // Prevent page refresh
 
-    // Obtener datos del villano al cargar el componente
-    useEffect(() => {
-        const obtenerDatos = async () => {
-            try {
-                const response = await fetch(`${url}/api/villanos/${opcion}/${nombre}`);
-                if (!response.ok) {
-                    throw new Error("Error al obtener los datos del villano");
-                }
+    // Determine API endpoint based on selected universe
+    const endpoint = universe === "marvel" 
+      ? "http://localhost:3001/api/villanos/marvel" 
+      : "http://localhost:3001/api/villanos/dc";
+    const newVillain = { nombre, nemesis, fecha_creacion, poderes, apariencia, identidad_secreta, origen };
 
-                const data = await response.json();
-                setFormData({
-                    Nombre: data.Nombre || "",
-                    Nemesis: data.Nemesis || "",
-                    fecha_creacion: data["Fecha de Creación"] || "",
-                    Poderes: data.Poderes || "",
-                    Apariencia: data.Apariencia || "",
-                    identidad_secreta: data["Identidad Secreta"] || "",
-                    Origen: data.Origen || "",
-                });
-            } catch (error) {
-                console.error("Error:", error);
-                alert("Hubo un problema al cargar los datos del villano");
-            }
-        };
+    try {
+      const response = await fetch(endpoint, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(newVillain),
+      });
 
-        obtenerDatos();
-    }, [opcion, nombre]);
+      const data = await response.json().catch(() => null); // Evita errores si no hay JSON en la respuesta
+      console.log("Respuesta del servidor:", response.status, data); // Agregar esto para ver qué devuelve el servidor
 
-    // Función para manejar los cambios en los inputs
-    const handleChange = (e) => {
-        setFormData({ ...formData, [e.target.name]: e.target.value });
-    };
+      if (response.ok) {
+        alert("Villain created successfully!");
+        setName(""); 
+        setNemesis("");
+        setFecha("");
+        setPoderes("");
+        setApariencia("");
+        setIdentidad("");
+      } else {
+        alert("Failed to create villain.");
+      }
+    } catch (error) {
+      console.error("Error:", error);
+      alert("An error occurred while creating the villain.");
+    }
+  };
 
-    // Enviar datos actualizados al backend
-    const guardar = async (e) => {
-        e.preventDefault(); 
+  return (
+    <div className="fondo" style={{height: "110%"}}>
+        <header>
+        </header>
 
-        try {
-            const response = await fetch(`${url}/api/villanos/${opcion}/${nombre}`, {
-                method: "PUT",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify(formData),
-            });
-
-            if (!response.ok) {
-                throw new Error("Error al modificar los datos del villano");
-            }
-
-            alert("Datos modificados exitosamente");
-            navigate(`/villanos/${opcion}`); // Redirigir a la lista de villanos
-        } catch (error) {
-            console.error("Error:", error);
-            alert("Hubo un problema al modificar el villano");
-        }
-    };
-
-    return (
-        <div className="fondo" style={{ height: "110%" }}>
-            <header></header>
-            <div className="form">
-                <h2><center>Modificar los datos de un villano</center></h2>
-                <form onSubmit={guardar}>
-                    
-                    {/* Nombre del villano */}
-                    <div className="mb-3">
-                        <label className="form-label">Nombre del villano</label>
-                        <input
-                            name="Nombre"
-                            placeholder={formData.Nombre || "Nombre"}
-                            type="text"
-                            className="form-control"
-                            value={formData.Nombre}
-                            onChange={handleChange}
-                            required
-                        />
-                    </div>
-
-                    {/* Némesis */}
-                    <div className="mb-3">
-                        <label className="form-label">Némesis del villano</label>
-                        <input
-                            name="Nemesis"
-                            placeholder={formData.Nemesis || "Némesis"}
-                            type="text"
-                            className="form-control"
-                            value={formData.Nemesis}
-                            onChange={handleChange}
-                            required
-                        />
-                    </div>
-
-                    {/* Año de creación */}
-                    <div className="mb-3">
-                        <label className="form-label">Año de creación</label>
-                        <input
-                            name="fecha_creacion"
-                            placeholder={formData.fecha_creacion || "YYYY"}
-                            type="text"
-                            className="form-control"
-                            value={formData.fecha_creacion}
-                            onChange={handleChange}
-                            pattern="^\d{4}$"
-                            maxLength="4"
-                            required
-                        />
-                    </div>
-
-                    {/* Poderes */}
-                    <div className="mb-3">
-                        <label className="form-label">Poderes</label>
-                        <textarea
-                            name="Poderes"
-                            placeholder={formData.Poderes || "Poderes"}
-                            className="form-control"
-                            value={formData.Poderes}
-                            onChange={handleChange}
-                            required
-                        ></textarea>
-                    </div>
-
-                    {/* Apariencia */}
-                    <div className="mb-3">
-                        <label className="form-label">Apariencia del villano</label>
-                        <input
-                            name="Apariencia"
-                            placeholder={formData.Apariencia || "Apariencia"}
-                            type="text"
-                            className="form-control"
-                            value={formData.Apariencia}
-                            onChange={handleChange}
-                            required
-                        />
-                    </div>
-
-                    {/* Identidad secreta */}
-                    <div className="mb-3">
-                        <label className="form-label">Identidad secreta</label>
-                        <input
-                            name="identidad_secreta"
-                            placeholder={formData.identidad_secreta || "Identidad secreta"}
-                            type="text"
-                            className="form-control"
-                            value={formData.identidad_secreta}
-                            onChange={handleChange}
-                            required
-                        />
-                    </div>
-
-                    {/* Origen */}
-                    <div className="mb-3">
-                        <label className="form-label">Origen</label>
-                        <textarea
-                            name="Origen"
-                            placeholder={formData.Origen || "Origen"}
-                            className="form-control"
-                            value={formData.Origen}
-                            onChange={handleChange}
-                            required
-                        ></textarea>
-                    </div>
-
-                    {/* Botón de guardar */}
-                    <center>
-                        <button type="submit" className="btn btn-danger">Guardar cambios</button>
-                    </center>
-                </form>
-            </div>
+        <div className="form">
+        <h2><center> Registrar un nuevo villano </center></h2>
+        <form onSubmit={handleSubmit}>
+        
+        {/* nombre del villano */}
+        <div className="mb-3">
+            <label className="form-label"> Nombre del villano </label>
+                <input
+                placeholder="Nombre"
+                type="text"
+                className="form-control"
+                value={nombre}
+                onChange={(e) => setName(e.target.value)}
+                required
+                />
         </div>
-    );
+
+        {/* nemesis */}
+        <div className="mb-3">
+            <label className="form-label"> Nemesis del villano </label>
+                <input
+                placeholder="Nemesis"
+                type="text"
+                className="form-control"
+                value={nemesis}
+                onChange={(e) => setNemesis(e.target.value)}
+                required
+                />
+        </div>
+
+        {/* año de creación */}
+        <div className="mb-3">
+            <label className="form-label"> Año de creación </label>
+                <input
+                placeholder="YYYY"
+                type="text"
+                className="form-control"
+                value={fecha_creacion}
+                onChange={(e) => setFecha(e.target.value)}
+                pattern="^\d{4}$"
+                maxLength="4"
+                required
+                />
+        </div>
+
+        {/* poderes */}
+        <div className="mb-3">
+            <label className="form-label"> Poderes </label>
+            <textarea
+                placeholder="Poderes"
+                className="form-control"
+                value={poderes}
+                onChange={(e) => setPoderes(e.target.value)}
+                required
+            ></textarea>
+        </div>
+
+        {/* apariencia */}
+        <div className="mb-3">
+            <label className="form-label"> apariencia del villano </label>
+                <input
+                placeholder="Apariencia"
+                type="text"
+                className="form-control"
+                value={apariencia}
+                onChange={(e) => setApariencia(e.target.value)}
+                required
+                />
+        </div>
+
+        {/* identidad secreta */}
+        <div className="mb-3">
+            <label className="form-label"> Identidad secreta </label>
+                <input
+                placeholder="Identidad secreta"
+                type="text"
+                className="form-control"
+                value={identidad_secreta}
+                onChange={(e) => setIdentidad(e.target.value)}
+                required
+                />
+        </div>
+
+        {/* Origen */}
+        <div className="mb-3">
+            <label className="form-label"> Origen </label>
+            <textarea
+                placeholder="Origen"
+                className="form-control"
+                value={origen}
+                onChange={(e) => setOrigen(e.target.value)}
+                required
+            ></textarea>
+        </div>
+
+        {/* Universe Selection */}
+        <div className="mb-3">
+            <label className="form-label">Universe</label>
+                <select className="form-select" value={universe} onChange={(e) => setUniverse(e.target.value)}>
+                    <option value="marvel">Marvel</option>
+                    <option value="dc">DC</option>
+                </select>
+        </div>
+
+        {/* Submit Button */}
+        <center><button type="submit" className="btn btn-danger"> Crear villano </button></center>
+        </form>
+    </div>
+    </div>
+  );
 };
 
-export default Modificar;
+export default Anadir;
