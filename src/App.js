@@ -10,6 +10,7 @@ import Footer from "./components/Footer";
 import Anadir from "./components/Anadir";
 import Ejemplo from "./components/Ejemplo";
 import Detalles from "./components/Detalles";
+import Modificar from "./components/Modificar";
 
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
         <Route path="/villanos/api/crear" element={<Anadir />} />
         <Route path="/villanos/api/ejemplo" element={<Ejemplo />} />
         <Route path="/villanos/api/:opcion/:nombre" element={<Detalles />} />
+        <Route path="/villanos/api/:opcion/:nombre/modificar" element={<Modificar />} />
       </Routes>
       <Footer />
     </Router>

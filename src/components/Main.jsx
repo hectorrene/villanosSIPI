@@ -8,7 +8,7 @@ const Main = () => {
       <video src={malvado} autoPlay loop muted />
       <div className="content">
         <h1> El rincón del villano </h1>
-        <Link to = "/api/villanos/"> conocenos, pilluelo </Link>
+        <Link to = "/villanos/api/marvel"> conocenos, pilluelo </Link>
       </div>
     </div>
   );

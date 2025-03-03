@@ -8,14 +8,9 @@ const DC = () => {
     <div className="fondo">
       <header>
       </header>
-      
-    <div className="contenido">
-      <h1>DC</h1>
-      <p>Bienvenido a la sección de DC</p>
-      
-    </div>
-    <VillanoPeak opcion="dc"/>
-    
+      <div class="container py-5">
+          <VillanoPeak opcion="dc"/>
+      </div>
     </div>
   );
 };
