@@ -2,13 +2,13 @@ import React, { useState } from "react";
 import "./Formato.css";
 
 const Anadir = () => {
-  const [nombre, setName] = useState("");
-  const [nemesis, setNemesis] = useState("");
-  const [fecha_creacion, setFecha] = useState("");
-  const [poderes, setPoderes] = useState("");
-  const [apariencia, setApariencia] = useState("");
-  const [identidad_secreta, setIdentidad] = useState("");
-  const [origen, setOrigen] = useState("");
+  const [Nombre, setName] = useState("");
+  const [Nemesis, setNemesis] = useState("");
+  const [Fecha_De_Creacion, setFecha] = useState("");
+  const [Poderes, setPoderes] = useState("");
+  const [Apariencia, setApariencia] = useState("");
+  const [Identidad_Secreta, setIdentidad] = useState("");
+  const [Origen, setOrigen] = useState("");
   const [universe, setUniverse] = useState("marvel"); 
 
   const handleSubmit = async (e) => {
@@ -18,7 +18,7 @@ const Anadir = () => {
     const endpoint = universe === "marvel" 
       ? "http://localhost:3001/api/villanos/marvel" 
       : "http://localhost:3001/api/villanos/dc";
-    const newVillain = { nombre, nemesis, fecha_creacion, poderes, apariencia, identidad_secreta, origen };
+    const newVillain = { Nombre, Nemesis, Fecha_De_Creacion, Poderes, Apariencia, Identidad_Secreta, Origen };
 
     try {
       const response = await fetch(endpoint, {
@@ -65,7 +65,7 @@ const Anadir = () => {
                 placeholder="Nombre"
                 type="text"
                 className="form-control"
-                value={nombre}
+                value={Nombre}
                 onChange={(e) => setName(e.target.value)}
                 required
                 />
@@ -78,7 +78,7 @@ const Anadir = () => {
                 placeholder="Nemesis"
                 type="text"
                 className="form-control"
-                value={nemesis}
+                value={Nemesis}
                 onChange={(e) => setNemesis(e.target.value)}
                 required
                 />
@@ -91,7 +91,7 @@ const Anadir = () => {
                 placeholder="YYYY"
                 type="text"
                 className="form-control"
-                value={fecha_creacion}
+                value={Fecha_De_Creacion}
                 onChange={(e) => setFecha(e.target.value)}
                 pattern="^\d{4}$"
                 maxLength="4"
@@ -105,7 +105,7 @@ const Anadir = () => {
             <textarea
                 placeholder="Poderes"
                 className="form-control"
-                value={poderes}
+                value={Poderes}
                 onChange={(e) => setPoderes(e.target.value)}
                 required
             ></textarea>
@@ -118,7 +118,7 @@ const Anadir = () => {
                 placeholder="Apariencia"
                 type="text"
                 className="form-control"
-                value={apariencia}
+                value={Apariencia}
                 onChange={(e) => setApariencia(e.target.value)}
                 required
                 />
@@ -131,7 +131,7 @@ const Anadir = () => {
                 placeholder="Identidad secreta"
                 type="text"
                 className="form-control"
-                value={identidad_secreta}
+                value={Identidad_Secreta}
                 onChange={(e) => setIdentidad(e.target.value)}
                 required
                 />
@@ -143,7 +143,7 @@ const Anadir = () => {
             <textarea
                 placeholder="Origen"
                 className="form-control"
-                value={origen}
+                value={Origen}
                 onChange={(e) => setOrigen(e.target.value)}
                 required
             ></textarea>
